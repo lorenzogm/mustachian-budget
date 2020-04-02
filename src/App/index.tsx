@@ -2,7 +2,8 @@ import React from 'react'
 import { BrowserRouter as Router, Switch } from 'react-router-dom'
 
 import { auth } from 'services/firebase'
-import DefaultLayout from 'layouts/DefaultLayout'
+import PrivateLayout from 'layouts/PrivateLayout'
+import PublicLayout from 'layouts/PublicLayout'
 import AccountListPage from 'pages/AccountListPage'
 import HomePage from 'pages/HomePage'
 import SignUpPage from 'pages/SignUpPage'
@@ -37,8 +38,6 @@ const App: React.FC = () => {
     return <h2>Loading</h2>
   }
 
-  console.log(authenticated)
-
   return (
     <Router>
       <Switch>
@@ -46,25 +45,25 @@ const App: React.FC = () => {
           exact
           path="/"
           component={HomePage}
-          layout={DefaultLayout}
+          layout={PublicLayout}
           authenticated={authenticated}
         ></RoutePublic>
         <RoutePublic
           path="/signup"
           component={SignUpPage}
-          layout={DefaultLayout}
+          layout={PublicLayout}
           authenticated={authenticated}
         ></RoutePublic>
         <RoutePublic
-          path="/login"
+          path="/signin"
           component={SignInPage}
-          layout={DefaultLayout}
+          layout={PublicLayout}
           authenticated={authenticated}
         ></RoutePublic>
         <RoutePrivate
           path="/accounts"
           component={AccountListPage}
-          layout={DefaultLayout}
+          layout={PrivateLayout}
           authenticated={authenticated}
         ></RoutePrivate>
       </Switch>
