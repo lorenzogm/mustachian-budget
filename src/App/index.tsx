@@ -1,5 +1,5 @@
 import React from 'react'
-import { BrowserRouter as Router, Switch } from 'react-router-dom'
+import { Route, Redirect, BrowserRouter as Router, Switch } from 'react-router-dom'
 
 import { auth } from 'services/firebase'
 import PrivateLayout from 'layouts/PrivateLayout'
@@ -66,6 +66,9 @@ const App: React.FC = () => {
           layout={PrivateLayout}
           authenticated={authenticated}
         ></RoutePrivate>
+        <Route path="*">
+          <Redirect to="/" />
+        </Route>
       </Switch>
     </Router>
   )

@@ -18,7 +18,7 @@ const PublicRoute: React.FC<PublicRouteProps> = ({ component: Component, layout:
             <Component {...props} />
           </Layout>
         ) : (
-          <Redirect to="/" />
+          <Redirect to="/accounts" />
         )
       }
     />
