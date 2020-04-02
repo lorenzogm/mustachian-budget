@@ -1,18 +1,9 @@
 import React from 'react'
-import { Link as LinkReactRouterDom, LinkProps as LinkPropsReactRouterDom } from 'react-router-dom'
-import ButtonMUI, { ButtonProps as ButtonPropsMUI } from '@material-ui/core/Button'
+import ButtonMUI, { ButtonProps as ButtonMUIProps } from '@material-ui/core/Button'
 
-type ButtonProps = LinkPropsReactRouterDom & ButtonPropsMUI
+type ButtonProps = ButtonMUIProps
 
-const Button: React.FC<ButtonProps> = ({ children, to, ...rest }) => {
-  if (to) {
-    return (
-      <ButtonMUI component={LinkReactRouterDom} to={to} {...rest}>
-        {children}
-      </ButtonMUI>
-    )
-  }
-
+const Button: React.FC<ButtonProps> = ({ children, ...rest }) => {
   return <ButtonMUI {...rest}>{children}</ButtonMUI>
 }
 
