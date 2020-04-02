@@ -1,7 +1,7 @@
 import React from 'react'
 import { Route, Redirect, BrowserRouter as Router, Switch } from 'react-router-dom'
 
-import { auth } from 'services/firebase'
+import firebase from 'services/firebase'
 import PrivateLayout from 'layouts/PrivateLayout'
 import PublicLayout from 'layouts/PublicLayout'
 import AccountListPage from 'pages/AccountListPage'
@@ -11,27 +11,43 @@ import SignInPage from 'pages/SignInPage'
 
 import RoutePrivate from './RoutePrivate'
 import RoutePublic from './RoutePublic'
+import { User } from 'firebase'
+
+type State = {
+  authenticated: boolean
+  loading: boolean
+  user: User | null
+}
+
+const initialState: State = {
+  authenticated: false,
+  loading: true,
+  user: null,
+}
 
 const App: React.FC = () => {
-  const [{ authenticated, loading }, setState] = React.useState({
-    authenticated: false,
-    loading: true,
-  })
+  const [{ authenticated, loading }, setState] = React.useState(initialState)
 
   React.useEffect(() => {
-    auth().onAuthStateChanged((user) => {
+    const unsubscribe = firebase.auth().onAuthStateChanged((user) => {
       if (user) {
         setState({
           authenticated: true,
           loading: false,
+          user,
         })
       } else {
         setState({
           authenticated: false,
           loading: false,
+          user: null,
         })
       }
     })
+
+    return () => {
+      unsubscribe()
+    }
   }, [])
 
   if (loading) {

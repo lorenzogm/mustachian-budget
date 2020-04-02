@@ -2,7 +2,7 @@ import React from 'react'
 import Typography from '@material-ui/core/Typography'
 import Container from '@material-ui/core/Container'
 
-import Button from 'components/Button'
+import ButtonAsLink from 'components/ButtonAsLink'
 
 import useStyles from './useStyles'
 
@@ -19,9 +19,9 @@ const HomePage: React.FC = () => {
           Track your expenses
         </Typography>
         <div className={classes.heroButtons}>
-          <Button to="signin" variant="contained" color="primary">
+          <ButtonAsLink to="signin" variant="contained" color="primary">
             Sign In
-          </Button>
+          </ButtonAsLink>
         </div>
       </Container>
     </div>

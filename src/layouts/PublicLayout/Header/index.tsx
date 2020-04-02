@@ -2,7 +2,7 @@ import React from 'react'
 import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
 
-import Button from 'components/Button'
+import ButtonAsLink from 'components/ButtonAsLink'
 import Link from 'components/Link'
 
 import useStyles from './useStyles'
@@ -17,9 +17,9 @@ export default function ButtonAppBar() {
           <Link to="/" className={classes.title}>
             Mustachian Budget
           </Link>
-          <Button color="inherit" to="/signin">
+          <ButtonAsLink color="inherit" to="/signin">
             Sign In
-          </Button>
+          </ButtonAsLink>
         </Toolbar>
       </AppBar>
     </div>
