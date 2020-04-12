@@ -1,12 +1,8 @@
 import { makeStyles } from '@material-ui/core'
 
 const useStyles = makeStyles((theme) => ({
-  navigation: {
-    backgroundColor: 'grey',
+  main: {
     display: 'flex',
-    flexDirection: 'column',
-    height: '100vh',
-    width: '240px',
   },
 }))
 
