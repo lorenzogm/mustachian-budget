@@ -5,11 +5,18 @@ import CssBaseline from '@material-ui/core/CssBaseline'
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
 import Container from '@material-ui/core/Container'
 
+import { useFirebaseContext } from 'context/FirebaseContext'
+
 import signInWithGoogle from './signInWithGoogle'
 import useStyles from './useStyles'
 
 export default function SignIn() {
   const classes = useStyles()
+  const { auth } = useFirebaseContext()
+
+  const handleSignInWithGoogle = () => {
+    signInWithGoogle({ auth })
+  }
 
   return (
     <Container component="main" maxWidth="xs">
@@ -18,7 +25,7 @@ export default function SignIn() {
         <Avatar className={classes.avatar}>
           <LockOutlinedIcon />
         </Avatar>
-        <Button fullWidth variant="contained" color="primary" onClick={signInWithGoogle}>
+        <Button fullWidth variant="contained" color="primary" onClick={handleSignInWithGoogle}>
           Sign In with Google
         </Button>
       </div>
