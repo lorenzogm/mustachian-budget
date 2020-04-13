@@ -1,18 +1,17 @@
 import React from 'react'
-
-import { FirebaseContextProvider } from 'context/FirebaseContext'
-import { AuthContextProvider } from 'context/AuthContext'
+import 'services/firebase'
 
 import Router from './Router'
+import useAuth from './useAuth'
 
 const App: React.FC = () => {
-  return (
-    <FirebaseContextProvider>
-      <AuthContextProvider>
-        <Router />
-      </AuthContextProvider>
-    </FirebaseContextProvider>
-  )
+  const { loading } = useAuth()
+
+  if (loading) {
+    return <div>Loading...</div>
+  }
+
+  return <Router />
 }
 
 export default App

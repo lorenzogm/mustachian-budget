@@ -1,10 +1,6 @@
-import * as firebase from 'firebase'
+import * as firebase from 'firebase/app'
 
-type SignInWithGoogle = {
-  auth: firebase.auth.Auth
-}
-
-const signInWithGoogle = async ({ auth }: SignInWithGoogle) => {
+const signInWithGoogle = async () => {
   try {
     await firebase.auth().signInWithRedirect(new firebase.auth.GoogleAuthProvider())
   } catch (error) {

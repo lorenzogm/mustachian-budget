@@ -1,24 +1,30 @@
 import React from 'react'
-
 import { Route, Redirect, RouteProps } from 'react-router-dom'
+import * as firebase from 'firebase/app'
+import PublicLayout from 'layouts/PublicLayout'
 
 type PublicRouteProps = RouteProps & {
   component: React.ElementType
-  layout: React.FC
-  authenticated: boolean
+  layout?: React.FC
 }
 
-const PublicRoute: React.FC<PublicRouteProps> = ({ component: Component, layout: Layout, authenticated, ...rest }) => {
+const PublicRoute: React.FC<PublicRouteProps> = ({ component: Component, layout, ...rest }) => {
+  const user = firebase.auth().currentUser
+
+  console.log(user)
+
+  const Layout = layout || PublicLayout
+
   return (
     <Route
       {...rest}
       render={(props) =>
-        authenticated === false ? (
+        user ? (
+          <Redirect to="/accounts" />
+        ) : (
           <Layout>
             <Component {...props} />
           </Layout>
-        ) : (
-          <Redirect to="/accounts" />
         )
       }
     />

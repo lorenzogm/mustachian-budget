@@ -1,22 +1,19 @@
 import { mapping } from './getTransactionsFromCSVMappings'
 
-type getTransactionsFromCSVProps = {
+type GetTransactionsFromCSV = {
   mapping: mapping
   data: Array<string>
 }
 
-type getTransactionsFromCSVReturn = {
+export type Transaction = {
   date: string
   payee: string
   inflow: number
   outflow: number
 }
 
-const getTransactionsFromCSV = ({
-  mapping,
-  data,
-}: getTransactionsFromCSVProps): Array<getTransactionsFromCSVReturn> => {
-  return data.reduce((acc: Array<getTransactionsFromCSVReturn>, row, index) => {
+const getTransactionsFromCSV = ({ mapping, data }: GetTransactionsFromCSV): Array<Transaction> => {
+  return data.reduce((acc: Array<Transaction>, row, index) => {
     // skip the header if exists
     if (mapping.hasHeader && index === 0) {
       return acc

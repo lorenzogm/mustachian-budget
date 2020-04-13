@@ -1,12 +1,8 @@
-import * as firebase from 'firebase'
+import * as firebase from 'firebase/app'
 
-type signOutType = {
-  auth: firebase.auth.Auth
-}
-
-const signOut = ({ auth }: signOutType) => {
+const signOut = () => {
   try {
-    auth.signOut()
+    firebase.auth().signOut()
   } catch (error) {
     console.error(error)
   }
